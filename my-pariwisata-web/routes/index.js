@@ -7,7 +7,14 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/paketWisata', function(req, res, next) {
-  res.render('paketWisata', { title: 'Paket Wisata' });
+  let listpaketwisata = [
+    {'nama' : 'Wisata Pulau Kemaro' , 'harga' : 5000000},
+    {'nama' : 'Wisata Punti Kayu' , 'harga' : 25000000},
+    {'nama' : 'Wisata Jakabaring' , 'harga' : 1000000},
+  ]
+  res.render('paketWisata', { 
+    title: 'Paket Wisata', 
+    listpaketwisata : listpaketwisata});
 });
 
 router.get('/orderPaket', function(req, res, next) {
