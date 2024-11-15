@@ -32,7 +32,6 @@ const insert = (req, res, next) => {
       tanggal_lahir: req.body.tanggal_lahir,
       aktif: true
     });
-  
     mhs
       .save()
       .then((result) => {
