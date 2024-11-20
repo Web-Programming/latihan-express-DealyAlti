@@ -8,6 +8,7 @@ require('./app_server/models/db');
 var indexRouter = require('./app_server/routes/index');
 var usersRouter = require('./app_server/routes/users');
 var mahasiswaRouter = require('./app_server/routes/mahasiswas');
+var housingRouter = require('./app_server/routes/housing');
 
 var app = express();
 
@@ -24,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api', mahasiswaRouter);
+app.use('/housing', housingRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
