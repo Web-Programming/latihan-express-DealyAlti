@@ -11,7 +11,7 @@ import { FormGroup, FormControl, ReactiveFormsModule  } from '@angular/forms';
   imports: [CommonModule, ReactiveFormsModule],
   template: `
      <article >
-      <img class="listing-photo" [src]="housingLocation?.photo"
+      <img class="listing-photo" [src]="baseUrl + housingLocation?.photo"
         alt="Exterior photo of {{housingLocation?.name}}"/>
       <section class="listing-description">
         <h2 class="listing-heading">{{housingLocation?.name}}</h2>
@@ -50,6 +50,8 @@ export class DetailsComponent {
     firstName: new FormControl(''),
     lastName: new FormControl('')
   })
+  readonly baseUrl = 'https://angular.io/assets/images/tutorials/faa';
+  
 
   constructor(){
     this.housingLocationId = Number(this.route.snapshot.params['id']);
