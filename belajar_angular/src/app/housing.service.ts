@@ -19,6 +19,30 @@ export class HousingService {
   }
 
   submitApplication(firstName :String, lastName : String, email : String){
-    console.log(firstName, lastName, email)
+    const apiUrl = "http://localhost:3000/register"; // URL endpoint untuk registrasi
+
+  const applicationData = {
+    firstname: firstName,
+    lastname: lastName,
+    email: email,
+  };
+
+  return fetch(apiUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json', 
+    },
+    body: JSON.stringify(applicationData), 
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Failed to submit application: ${response.statusText}`);
+      }
+      console.log('Application submitted successfully');
+    })
+    .catch((error) => {
+      console.error('Error submitting application:', error);
+      throw error;
+    });
   }
 }
