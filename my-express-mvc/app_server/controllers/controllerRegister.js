@@ -2,8 +2,8 @@ const Register = require("../models/register");
 
 const insert = (req, res, next) => {
     const registration = new Register({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
       email: req.body.email,
     });
     registration

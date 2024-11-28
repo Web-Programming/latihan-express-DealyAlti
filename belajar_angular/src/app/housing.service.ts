@@ -18,31 +18,36 @@ export class HousingService {
     return await data.json() ??[];
   }
 
-  submitApplication(firstName :String, lastName : String, email : String){
-    const apiUrl = "http://localhost:3000/register"; // URL endpoint untuk registrasi
+  submitApplication(firstName: String, lastName: String, email: String) {
+    const apiUrl = "http://localhost:3000/register";
 
-  const applicationData = {
-    firstname: firstName,
-    lastname: lastName,
-    email: email,
-  };
+    const applicationData = {
+        firstname: firstName, 
+        lastname: lastName,  
+        email: email,
+    };
 
-  return fetch(apiUrl, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json', 
-    },
-    body: JSON.stringify(applicationData), 
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`Failed to submit application: ${response.statusText}`);
-      }
-      console.log('Application submitted successfully');
+    return fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(applicationData),
     })
-    .catch((error) => {
-      console.error('Error submitting application:', error);
-      throw error;
-    });
+        .then((response) => {
+            if (!response.ok) {
+                return response.json().then((error) => {
+                    throw new Error(error.message || 'Failed to submit application');
+                });
+            }
+            return response.json();
+        })
+        .then((data) => {
+            console.log('Application submitted successfully:', data);
+        })
+        .catch((error) => {
+            console.error('Error submitting application:', error);
+            throw error;
+        });
   }
 }
